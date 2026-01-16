@@ -135,27 +135,52 @@
        Welcome（イントロ部分）
     ============================== */
     .welcome {
-      padding:var(--section-pad) 1.5rem;
-      text-align:center;
-      animation:welcome-fade .8s ease-out both;
-      margin-top: 1.5rem;
-    }
-    .welcome-inner { max-width:50em; margin:0 auto; }
-    .welcome-head h1 {
-      font-size:clamp(1.6rem,4vw,2.1rem);
-      color:darkblue;
-      margin:0 0 .6rem;
-    }
-    .welcome-lead {
-      margin:0 0 1.2rem;
-      color:#444;
-      font-size:1.2rem;
-    }
+  /* スマホ: 上下は変数or適度な余白、左右は少し狭めて文字スペースを確保 */
+  padding: var(--section-pad, 2rem) 1rem; 
+  text-align: center;
+  animation: welcome-fade .8s ease-out both;
+  margin-top: 1.5rem;
+}
 
-    @keyframes welcome-fade {
-      from { opacity:0; transform:translateY(6px); }
-      to { opacity:1; transform:none; }
-    }
+.welcome-inner {
+  max-width: 50em;
+  margin: 0 auto;
+  width: 100%; /* 安全策として追加 */
+}
+
+.welcome-head h1 {
+  /* スマホ: 1.8rem (約28px) 
+     PC: 2.5rem (約40px) 
+     その間は画面幅に合わせて滑らかに変化
+  */
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: darkblue;
+  margin: 0 0 .8rem; /* 少し余白を増やす */
+  line-height: 1.3;  /* タイトルが2行になっても読みやすく */
+}
+
+.welcome-lead {
+  /* スマホ: 1rem (16px)
+     PC: 1.25rem (20px)
+     説明文はスマホで大きすぎると安っぽくなるため調整
+  */
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: #444;
+  margin: 0 0 1.2rem;
+  line-height: 1.6; /* 読みやすさのために行間を確保 */
+}
+
+@keyframes welcome-fade {
+  from { opacity: 0; transform: translateY(10px); } /* 移動距離を少し増やして動きを強調 */
+  to { opacity: 1; transform: none; }
+}
+
+/* PC向けの微調整（必要であれば） */
+@media (min-width: 768px) {
+  .welcome {
+    padding: var(--section-pad, 3rem) 2rem; /* PCでは余白をゆったりと */
+  }
+}
 
     /* ==============================
        見出し帯
